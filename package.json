@@ -1,0 +1,19 @@
+{
+  "name": "node-nfe",
+  "version": "1.0.0",
+  "description": "Emissor da NF-e 4.0 em NodeJS",
+  "main": "nfe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "nfe"
+  ],
+  "author": "VZiemer",
+  "license": "MIT",
+  "dependencies": {
+    "brasil": "0.0.50",
+    "inscricaoestadual": "0.0.5",
+    "node-firebird": "^0.8.6"
+  }
+}
