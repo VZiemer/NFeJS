@@ -50,7 +50,6 @@ function dadosEmitente(empresa) {
     })
 }
 
-
 function dadosNota(venda) {
     return new Promise((resolve, reject) => {
         firebird.attach(conexao, function (err, db) {
