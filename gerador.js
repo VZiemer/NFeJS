@@ -1,8 +1,10 @@
+// importa os módulos necessários
 var fs = require('fs'),
     path = require('path'),
-    nfe = require('./app'),
     firebird = require('node-firebird'),
+    buscaCep = require('busca-cep')
     conexao = require('./db'),
+    nfe = require('./app'),    
     NFe = nfe.NFe,
     Gerador = nfe.Gerador,
     Danfe = nfe.Danfe,
@@ -15,13 +17,15 @@ var fs = require('fs'),
     Volumes = nfe.Volumes,
     Item = nfe.Item;
 
-
+//cria as variáveis necessárias
 var emitente = new Emitente();
 var destinatario = new Destinatario();
 var transportador = new Transportador();
 var volumes = new Volumes();
 var danfe = new NFe();
 
+
+// abre os dados da empresa emitente da nota informada pelo sistema (#param.codigo)
 function dadosEmitente(empresa) {
     return new Promise((resolve, reject) => {
         firebird.attach(conexao, function (err, db) {
@@ -34,14 +38,16 @@ function dadosEmitente(empresa) {
                         .comInscricaoEstadual(result[0].INSC)
                         .comTelefone(result[0].FONE)
                         .comEmail(result[0].EMAIL)
+                        .comCrt(result[0].CRT)
                         .comEndereco(new Endereco()
                             .comLogradouro(result[0].ENDERECO)
                             .comNumero(result[0].NUMERO)
                             .comComplemento('')
                             .comCep(result[0].CEP)
                             .comBairro(result[0].BAIRRO)
-                            .comMunicipio('')
+                            .comMunicipio(result[0].CIDADE)
                             .comCidade(result[0].CIDADE)
+                            .comCodMunicipio(result[0].CODIBGE)
                             .comUf(result[0].ESTADO));
                     resolve();
                 })
@@ -49,7 +55,6 @@ function dadosEmitente(empresa) {
         })
     })
 }
-
 function dadosNota(venda) {
     return new Promise((resolve, reject) => {
         firebird.attach(conexao, function (err, db) {
@@ -57,10 +62,11 @@ function dadosNota(venda) {
             db.query('select v.lcto,v.codcli,v.total,tr.peso,tr.volumes,tr.frete,tr.outra_desp,tr.desconto,tr.total_nota,tr.tipofrete,c.cgc,c.razao,c.insc,c.endereco,c.numero,c.bairro,c.complemento,c.cidade,c.cep,c.fone,c.email,ci.codibge,c.codcidade,ci.estado,ci.cod_estado,transp.codigo as codtransp, transp.transportador from venda v join transito tr on v.lcto = tr.documento join cliente c on c.codigo=v.codcli join cidade ci on c.codcidade = ci.cod_cidade left join transp on tr.codtransp = transp.codigo where lcto = ?', venda, function (err, result) {
                 if (err) throw err;
                 db.detach(function () {
-
                     destinatario.comNome(result[0].RAZAO)
                         .comRegistroNacional(result[0].CGC)
+                        .comInscricaoEstadual(result[0].INSC)
                         .comTelefone(result[0].FONE)
+                        .comEmail(result[0].EMAIL)
                         .comEndereco(new Endereco()
                             .comLogradouro(result[0].ENDERECO)
                             .comNumero(result[0].NUMERO)
@@ -69,7 +75,8 @@ function dadosNota(venda) {
                             .comBairro(result[0].BAIRRO)
                             .comMunicipio(result[0].CIDADE)
                             .comCidade(result[0].CIDADE)
-                            .comUf(result[0].ESTADO));
+                            .comUf(result[0].ESTADO)
+                            .comCodMunicipio(result[0].CODIBGE));
                     transportador.comNome(result[0].TRANSPORTADOR)
                         .comEndereco(new Endereco());
                     volumes.comQuantidade(result[0].VOLUMES);
@@ -85,7 +92,7 @@ function dadosNota(venda) {
 }
 
 dadosEmitente(1).then(dadosNota(1358273)).then(function () {
-
+    console.log(destinatario)
     danfe.comChaveDeAcesso('52131000132781000178551000000153401000153408');
     danfe.comEmitente(emitente);
     danfe.comDestinatario(destinatario);
@@ -110,17 +117,7 @@ dadosEmitente(1).then(dadosNota(1358273)).then(function () {
     danfe.comDesconto(1.07);
     danfe.comOutrasDespesas(13.32);
 
-
-    console.log(danfe)
 })
-
-
-
-
-
-
-
-
 
 
 var protocolo = new Protocolo();
@@ -138,11 +135,6 @@ var impostos = new Impostos();
 // impostos.comValorDaCofins(50);
 // impostos.comBaseDeCalculoDoIssqn(40);
 // impostos.comValorTotalDoIssqn(30);
-
-
-
-
-
 
 
 for (var i = 0; i < 50; i++) {

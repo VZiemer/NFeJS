@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "brasil": "0.0.50",
+    "busca-cep": "^0.3.6",
     "inscricaoestadual": "0.0.5",
     "node-firebird": "^0.8.6"
   }
