@@ -15,7 +15,8 @@ var fs = require('fs'),
     Protocolo = nfe.Protocolo,
     Impostos = nfe.Impostos,
     Volumes = nfe.Volumes,
-    Item = nfe.Item;
+    Item = nfe.Item,
+    Icms = nfe.Icms;
 
 //cria as variáveis necessárias
 var emitente = new Emitente();
@@ -92,7 +93,7 @@ function dadosNota(venda) {
 }
 
 dadosEmitente(1).then(dadosNota(1358273)).then(function () {
-    console.log(destinatario)
+    // console.log(destinatario)
     danfe.comChaveDeAcesso('52131000132781000178551000000153401000153408');
     danfe.comEmitente(emitente);
     danfe.comDestinatario(destinatario);
@@ -137,24 +138,22 @@ var impostos = new Impostos();
 // impostos.comValorTotalDoIssqn(30);
 
 
-for (var i = 0; i < 50; i++) {
+for (var i = 0; i < 5; i++) {
+    var icms = new Icms().CalculaIcms(0, 2, 'SP', 'SP', 1, 1, '100', '18', '1')
     danfe.adicionarItem(new Item()
         .comCodigo('' + i)
         .comDescricao('Produto')
         .comNcmSh('15156000')
-        .comOCst('020')
-        .comCfop('6101')
+        .comIcms(icms)
+        // .comOCst('020')
+        // .comCfop('6101')
         .comUnidade('LT')
         .comQuantidade(3.1415)
         .comValorUnitario(2.31)
-        .comValorTotal(7.13)
-        .comBaseDeCalculoDoIcms(5.01)
-        .comValorDoIcms(0.67)
-        .comValorDoIpi(0.03)
-        .comAliquotaDoIcms(0.1753)
-        .comAliquotaDoIpi(0.0034));
+        .comValorTotal(7.13));
 }
-        // console.log(danfe)
+        console.log(danfe._itens)
 
+        // console.log(new Icms().CalculaIcms(0, 2, 'SP', 'SP', 1, 1, '100', '18', '1'))
 
 

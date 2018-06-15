@@ -7,6 +7,7 @@ module.exports = {
     Transportador: require('./lib/transportador'),
     Endereco: require('./lib/endereco'),
     Item: require('./lib/item'),
+    Icms: require('./lib/icms'),
     Protocolo: require('./lib/protocolo'),
     Gerador: require('./lib/gerador'),
     Impostos: require('./lib/impostos'),
