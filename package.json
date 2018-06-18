@@ -14,7 +14,10 @@
   "dependencies": {
     "brasil": "0.0.50",
     "busca-cep": "^0.3.6",
+    "ini": "^1.3.5",
     "inscricaoestadual": "0.0.5",
-    "node-firebird": "^0.8.6"
+    "node-firebird": "^0.8.6",
+    "xml2js": "^0.4.19",
+    "xmlbuilder": "^10.0.0"
   }
 }
