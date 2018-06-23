@@ -1,0 +1,22 @@
+ERRO: Arquivo de Schema não especificado
+ERRO: Falha na validação dos dados da nota: 0
+TAG:<ide> ID:B04/natOp(Descrição da Natureza da Operação) - Nenhum valor informado.
+TAG:<ide> ID:B27/verProc(Versão do Processo de emissão do DF-e) - Nenhum valor informado.
+TAG:<det nItem="1"><prod> ID:I08/CFOP(CFOP) - Conteúdo inválido.
+TAG:<det nItem="1"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="1"><prod> ID:I13/uTrib(Unidade Tributável) - Nenhum valor informado.
+TAG:<det nItem="2"><prod> ID:I08/CFOP(CFOP) - Conteúdo inválido.
+TAG:<det nItem="2"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="2"><prod> ID:I13/uTrib(Unidade Tributável) - Nenhum valor informado.
+TAG:<det nItem="3"><prod> ID:I08/CFOP(CFOP) - Conteúdo inválido.
+TAG:<det nItem="3"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="3"><prod> ID:I13/uTrib(Unidade Tributável) - Nenhum valor informado.
+TAG:<det nItem="4"><prod> ID:I08/CFOP(CFOP) - Conteúdo inválido.
+TAG:<det nItem="4"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="4"><prod> ID:I13/uTrib(Unidade Tributável) - Nenhum valor informado.
+TAG:<det nItem="5"><prod> ID:I08/CFOP(CFOP) - Conteúdo inválido.
+TAG:<det nItem="5"><prod> ID:I08/CFOP(CFOP) - Nenhum valor informado.
+TAG:<det nItem="5"><prod> ID:I13/uTrib(Unidade Tributável) - Nenhum valor informado.
+
+1871 - Element '{http://www.portalfiscal.inf.br/nfe}pag': Missing child element(s). Expected is ( {http://www.portalfiscal.inf.br/nfe}detPag ).
+
