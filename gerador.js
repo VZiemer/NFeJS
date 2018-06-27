@@ -126,7 +126,7 @@ function criaNf(venda) {
         danfe.comDataDaEmissao(new Date(2014, 10, 19));
         danfe.comDataDaEntradaOuSaida(new Date(2014, 10, 19, 12, 43, 59));
         danfe.comModalidadeDoFrete('porContaDoDestinatarioRemetente');
-        danfe.comInscricaoEstadualDoSubstitutoTributario('102959579');
+        // danfe.comInscricaoEstadualDoSubstitutoTributario('102959579');
         danfe.comInformacoesComplementares('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum nihil aut nostrum');
         danfe.comValorTotalDaNota(250.13);
         danfe.comValorTotalDosProdutos(120.10);
