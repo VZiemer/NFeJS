@@ -292,6 +292,13 @@ var Danfe = (function() {
         }[this.getTipo()] || '';
     };
 
+    Danfe.prototype.getTipoAbreviado = function() {
+        return {
+            entrada: 'E',
+            saida: 'S'
+        }[this.getTipo()] || '';
+    };    
+
     Danfe.prototype.comTipo = function(_tipo) {
         if(['entrada', 'saida'].indexOf(_tipo) === -1) {
             throw new Error('Os valores permitidos são as strings "entrada" e "saida"');
@@ -445,8 +452,16 @@ var Danfe = (function() {
         return this;
     };
 
-    Danfe.prototype.getModalidadeDoFrete = function() {
-        return this._modalidadeDoFrete;
+    Danfe.prototype.getCodigoModalidadeDoFrete = function() {
+        var codModFrete = {
+            'porContaDoEmitente' : 0, // Contratação do Frete por conta do Remetente (CIF)
+            'porContaDoDestinatarioRemetente' : 1, // Contratação do Frete por conta do Destinatário (FOB)
+            'porContaDeTerceiros' : 2, // Contratação do Frete por conta de Terceiros
+            'porContaProprioRemetente' : 3, // Transporte Próprio por conta do Remetente
+            'porContaProprioDestinatario' : 4, // Transporte Próprio por conta do Destinatário
+            'semFrete' : 9
+        }
+        return codModFrete[this._modalidadeDoFrete];
     };
 
     Danfe.prototype.comModalidadeDoFrete = function(_modalidadeDoFrete) {
@@ -454,7 +469,9 @@ var Danfe = (function() {
             'semFrete',
             'porContaDoEmitente',
             'porContaDoDestinatarioRemetente',
-            'porContaDeTerceiros'
+            'porContaDeTerceiros',
+            'porContaProprioRemetente',
+            'porContaProprioDestinatario'
         ].indexOf(_modalidadeDoFrete) === -1) {
             throw new Error([
                 'Os valores permitidos são as strings',

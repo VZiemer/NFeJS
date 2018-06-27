@@ -111,11 +111,12 @@ function dadosNota(venda, emitente) {
 
 function criaNf(venda) {
     return new Promise((resolve, reject) => {
-        danfe.comChaveDeAcesso('52131000132781000178551000000153401000153408');
+        //TODO : retorno do envio inserir chave e protocolo.
+        // danfe.comChaveDeAcesso(chave);
+        // danfe.comProtocolo(protocolo);
         danfe.comEmitente(emitente);
         danfe.comDestinatario(destinatario);
         danfe.comTransportador(transportador);
-        // danfe.comProtocolo(protocolo);
         danfe.comImpostos(impostos);
         danfe.comVolumes(volumes);
         danfe.comTipo('saida');
@@ -189,7 +190,7 @@ dadosEmitente(1, 1359424).then(dadosNota).then(criaNf).then(itensNota).then(func
 
 var Geraini = {
     infNFe: {
-        versao: '4.0.0'
+        versao: '4.0'
     },
     Identificacao: {
         cNF: danfe.getNumero(),
@@ -400,66 +401,3 @@ var impostos = new Impostos();
 
 
 
-function GravaBanco (danfe) {
-    {
-        if (this.Destinatario.UF == 'SP' && this.Destinatario.indIEDest == 9) {
-          CFOP = 5102;
-          indIEDest = 'N';
-          NATOPER = 'VENDA MERC NO ESTADO';
-        }
-        else if (this.Destinatario.UF == 'SP' && this.Destinatario.indIEDest != 9) {
-          CFOP = 5102;
-          indIEDest = 'C';
-          NATOPER = 'VENDA MERC NO ESTADO';
-        }
-        else if (this.Destinatario.UF != 'SP' && this.Destinatario.indIEDest == 9) {
-          CFOP = 6108;
-          NATOPER = 'VENDA DE MERCADORIA ADQUIR.OU REC.TERC. A NÃO CONTRIBUINTE';
-        }
-        else if (this.Destinatario.UF != 'SP' && this.Destinatario.indIEDest != 9) {
-          CFOP = 6102;
-          NATOPER = 'VENDA MERC FORA ESTADO';
-        }
-        let sql = "execute block as begin ";
-        sql = sql + "insert into nfe (nota,data,codcli,nome,cnpj,inscest,endereco,end_numero,bairro,cidade,estado,cep,codcidade,fone,total,cancela,frete,entsai,basesubs,vlsubs,baseicms,valoricms,vlfrete,vldesconto,outrasdesp,cnf,finalidade,formapagto,indfinal,indiedest,cfop,natoper,nomexml,protocolo,pesobruto,quantidade,especie,codtran) values (" + this.Identificacao.nNF + ",CURRENT_DATE," + cliente.CODCLI + ",'" + this.Destinatario.xNome + "'," + this.Destinatario.CNPJCPF + ",'" + this.Destinatario.IE + "','" + this.Destinatario.xLgr + "','" + this.Destinatario.nro + "','" + this.Destinatario.xBairro + "','" + this.Destinatario.xMun + "','" + this.Destinatario.UF + "','" + this.Destinatario.CEP + "'," + cliente.CODCIDADE + ",'" + this.Destinatario.Fone + "'," + this.Total.vNF + ",'E','1','S'," + this.Total.vBCST + "," + this.Total.vST + "," + this.Total.vBC + "," + this.Total.vICMS + "," + this.Total.vFrete + "," + this.Total.vDesc + "," + this.Total.vOutro + ",'" + this.Identificacao.cNF + "'," + this.Identificacao.finNFe + ",1," + this.Identificacao.indFinal + ",'" + indIEDest + "','" + CFOP + "','" + NATOPER + "','" + nomexml + "','" + protocolo + "'," + (this.Volume001.pesoB || null) + "," + (this.Volume001.qVol || null) + ",'" + (this.Volume001.esp || '') + "'," + (cliente.CODTRANSP || null) + ");";
-        for (i = 0; i < produtos.length; i++) {
-          let indice = zeroEsq(i + 1, 3, 0);
-          let codigo = produtos[i].CODPRO;
-          sql += "insert into prodnfe (codnota,codpro,qtd,vluni,unid,aliq,ipi,cfop,impostoicms,baseicms,impostost,basest,sittrib) values (" + this.Identificacao.nNF + "," + codigo + "," + this["Produto" + indice].qCom + "," + this["Produto" + indice].vUnCom + ",'" + this["Produto" + indice].uCom + "'," + produtos[i].ALIQ + ",0," + this["Produto" + indice].CFOP + "," + (this["ICMS" + indice].pICMS) + "," + this["ICMS" + indice].vBC + "," + (this["ICMS" + indice].pICMSST || 0) + "," + this["ICMS" + indice].vBCST + "," + (this["ICMS" + indice].CST || this["ICMS" + indice].CSOSN) + "); "
-        }
-        sql += "end;"
-        Firebird.attach(options, function (err, db) {
-          if (err)
-            throw err;
-          db.execute(sql, function (err, result) {
-            let sql1 = "execute block as begin";
-            for (i = 0; i < cliente.PEDIDO; i++) {
-              sql1 += "update transito set nfe = " + this.Identificacao.nNF + " where documento = " + cliente[i].PEDIDO;
-            }
-            db.execute(sql1, function (err, result) {
-              db.detach(function () {
-                watcher.close();
-              });
-            });
-          });
-        });
-        console.log(sql)
-        pgtoavista = ''
-        cliente = {
-          'CODCLI': '',
-          'CODCIDADE': '',
-          'PEDIDO': '',
-          'CODTRANSP': ''
-        }
-        totais = {
-          'TOTAL': 0,
-          'DESCONTO': 0,
-          'OUTRO': 0,
-          'FRETE': 0,
-          'SEGURO': 0,
-          'PRODICMS': 0,
-          'PRODST': 0
-        }
-      
-      }
-}
