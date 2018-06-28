@@ -1,6 +1,6 @@
 NFe.CriarEnviarNFe("
 [infNFe]
-versao=4.0.0
+versao=4.0
 
 [Identificacao]
 cNF=1420
@@ -157,7 +157,7 @@ vICMS=46.8792
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=
+vBCST=260.44
 pICMSST=
 vICMSST=
 UFST=
@@ -216,7 +216,7 @@ vICMS=3.0852
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=
+vBCST=17.14
 pICMSST=
 vICMSST=
 UFST=
@@ -275,7 +275,7 @@ vICMS=1.1772
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=
+vBCST=6.54
 pICMSST=
 vICMSST=
 UFST=
@@ -334,7 +334,7 @@ vICMS=28.4292
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=
+vBCST=157.94
 pICMSST=
 vICMSST=
 UFST=
@@ -393,7 +393,7 @@ vICMS=39.78
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=
+vBCST=221
 pICMSST=
 vICMSST=
 UFST=

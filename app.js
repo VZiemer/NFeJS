@@ -14,5 +14,6 @@ module.exports = {
     Volumes: require('./lib/volumes'),
     FormularioDeSeguranca: require('./lib/formularioDeSeguranca'),
     Fatura: require('./lib/fatura'),
-    Duplicata: require('./lib/duplicata')
+    Duplicata: require('./lib/duplicata'),
+    GravaBanco: require('./lib/gravabanco')
 };
