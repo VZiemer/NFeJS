@@ -250,6 +250,8 @@ var Danfe = (function () {
     };
 
     Danfe.prototype.comValorDoFrete = function (_valorDoFrete) {
+
+        
         this._valorDoFrete = _valorDoFrete;
         return this;
     };

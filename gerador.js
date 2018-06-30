@@ -1,3 +1,15 @@
+
+
+// TODO: buscar numero da próxima nota
+// TODO: enviar e trazer retorno de chave e protocolo, após gravar a nota no sistema
+// TODO: integração ao caixa e impressão
+
+
+
+
+
+
+
 // importa os módulos necessários
 //testes
 
@@ -116,25 +128,21 @@ function criaNf(venda) {
         danfe.comEmitente(emitente);
         danfe.comDestinatario(destinatario);
         danfe.comTransportador(transportador);
-        danfe.comImpostos(impostos);
         danfe.comVolumes(volumes);
         danfe.comTipo('saida');
         danfe.comFinalidade('normal');
         danfe.comNaturezaDaOperacao('VENDA');
         danfe.comNumero(1420);
         danfe.comSerie(100);
-        danfe.comDataDaEmissao(new Date(2014, 10, 19));
-        danfe.comDataDaEntradaOuSaida(new Date(2014, 10, 19, 12, 43, 59));
+        danfe.comDataDaEmissao(new Date());
+        danfe.comDataDaEntradaOuSaida(new Date());
         danfe.comModalidadeDoFrete('porContaDoDestinatarioRemetente');
         // danfe.comInscricaoEstadualDoSubstitutoTributario('102959579');
-        danfe.comInformacoesComplementares('Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum nihil aut nostrum');
-        danfe.comValorTotalDaNota(250.13);
-        danfe.comValorTotalDosProdutos(120.10);
-        danfe.comValorTotalDosServicos(130.03);
-        danfe.comValorDoFrete(23.34);
-        danfe.comValorDoSeguro(78.65);
-        danfe.comDesconto(1.07);
-        danfe.comOutrasDespesas(13.32);
+
+
+
+
+
         resolve(venda);
     })
 
@@ -179,14 +187,48 @@ function itensNota(venda) {
     })
 }
 
+function totalizadorNfe() {
+    console.log('totalizador')
+    return new Promise((resolve, reject) => {
+        var impostos = new Impostos();
+        impostos.comBaseDeCalculoDoIcms(danfe.getItens().reduce(function (a, item) {
+            return parseFloat(a + item.getIcms().getBaseDeCalculoDoIcms());
+        }, 0));
+        impostos.comValorDoIcms(danfe.getItens().reduce(function (a, item) {
+            return parseFloat(a + item.getIcms().getValorDoIcms());
+        }, 0));
+        impostos.comBaseDeCalculoDoIcmsSt(danfe.getItens().reduce(function (a, item) {
+            return parseFloat(a + item.getIcms().getBaseDeCalculoDoIcmsSt());
+        }, 0));
+        impostos.comValorDoIcmsSt(danfe.getItens().reduce(function (a, item) {
+            return parseFloat(a + item.getIcms().getValorDoIcmsSt());
+        }, 0));
+        impostos.comValorDoImpostoDeImportacao(0);
+        impostos.comValorDoPis(0);
+        impostos.comValorTotalDoIpi(0);
+        impostos.comValorDaCofins(0);
+        impostos.comBaseDeCalculoDoIssqn(0);
+        impostos.comValorTotalDoIssqn(30);
 
+        danfe.comImpostos(impostos);
+        danfe.comInformacoesComplementares('');
+        danfe.comValorTotalDaNota(250.13);
+        danfe.comValorTotalDosProdutos(120.10);
+        danfe.comValorTotalDosServicos(130.03);
+        danfe.comValorDoFrete(23.34);
+        danfe.comValorDoSeguro(78.65);
+        danfe.comDesconto(1.07);
+        danfe.comOutrasDespesas(13.32);
+        resolve();
+    })
+
+};
 
 
 
 
 //cadeia de execução
-dadosEmitente(1, 1359424).then(dadosNota).then(criaNf).then(itensNota).then(function (res) {
-
+dadosEmitente(1, 1359424).then(dadosNota).then(criaNf).then(itensNota).then(totalizadorNfe).then(function (res) {
 
     var Geraini = {
         infNFe: {
@@ -376,9 +418,10 @@ dadosEmitente(1, 1359424).then(dadosNota).then(criaNf).then(itensNota).then(func
         }
 
     }
-    nfe.GravaBanco(danfe);
+    // nfe.GravaBanco(danfe);
+
     let textoini = ini.stringify(Geraini);
-    // console.log(textoini)
+    console.log(danfe.getImpostos())
     fs.writeFile("arquivoini.txt", 'NFe.CriarEnviarNFe("\n' + textoini + '\n",1)', (err) => {
         if (err) throw err;
         console.log("arquivo salvo com sucesso");
@@ -387,19 +430,9 @@ dadosEmitente(1, 1359424).then(dadosNota).then(criaNf).then(itensNota).then(func
 });
 var protocolo = new Protocolo();
 protocolo.comCodigo('123451234512345');
-protocolo.comData(new Date(2014, 10, 19, 13, 24, 35));
+protocolo.comData(new Date());
 
-var impostos = new Impostos();
-// impostos.comBaseDeCalculoDoIcms(100);
-// impostos.comValorDoIcms(17.5);
-// impostos.comBaseDeCalculoDoIcmsSt(90);
-// impostos.comValorDoIcmsSt(6.83);
-// impostos.comValorDoImpostoDeImportacao(80);
-// impostos.comValorDoPis(70);
-// impostos.comValorTotalDoIpi(60);
-// impostos.comValorDaCofins(50);
-// impostos.comBaseDeCalculoDoIssqn(40);
-// impostos.comValorTotalDoIssqn(30);
+
 
 
 
