@@ -30,7 +30,10 @@ var Danfe = (function () {
         this.comProtocolo(new Protocolo());
         this.comImpostos(new Impostos());
         this.comVolumes(new Volumes());
+        this._pagamentos = [];
+        this._duplicatas = [];
         this._itens = [];
+
     }
 
     Danfe.prototype.getProtocolo = function () {
@@ -251,7 +254,7 @@ var Danfe = (function () {
 
     Danfe.prototype.comValorDoFrete = function (_valorDoFrete) {
 
-        
+
         this._valorDoFrete = _valorDoFrete;
         return this;
     };

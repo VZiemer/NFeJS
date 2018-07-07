@@ -116,7 +116,7 @@ vTotTrib=
 infCpl=
 
 [Produto001]
-cProd=20499
+cProd=
 cEAN=
 xProd=CORR INVISIVEL INVISA GT230 HAFELE SLOW ET 500MM
 NCM=83024200
@@ -125,12 +125,9 @@ EXTIPI=
 CFOP=5102
 uCom=PR
 qCom=4
-vUnCom=65.11
-vProd=65.11
 cEANTrib=
 uTrib=
 qTrib=
-vUnTrib=65.11
 vFrete=
 vSeg=
 vDesc=
@@ -145,19 +142,26 @@ vIPIDevol=
 vTotTrib=
 infAdProd=
 
+[Produto001.vUnCom]
+valor=65.11
+
+[Produto001.vProd]
+valor=65.11
+
+[Produto001.vUnTrib]
+valor=65.11
+
 [ICMS001]
 orig=2
 CST=200
 CSOSN=
 modBC=0
 pRedBC=0
-vBC=260.44
 pICMS=18
-vICMS=46.8792
+vICMS=11.7198
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=260.44
 pICMSST=
 vICMSST=
 UFST=
@@ -174,8 +178,14 @@ vICMSOp=
 pDif=
 vICMSDif=
 
+[ICMS001.vBC]
+valor=65.11
+
+[ICMS001.vBCST]
+valor=65.11
+
 [Produto002]
-cProd=17801
+cProd=
 cEAN=
 xProd=SILICONE 280 GRAMAS TEKBOND BASE DAGUA BRANCO
 NCM=35061090
@@ -184,12 +194,9 @@ EXTIPI=
 CFOP=5102
 uCom=TB
 qCom=1
-vUnCom=17.14
-vProd=17.14
 cEANTrib=
 uTrib=
 qTrib=
-vUnTrib=17.14
 vFrete=
 vSeg=
 vDesc=
@@ -204,19 +211,26 @@ vIPIDevol=
 vTotTrib=
 infAdProd=
 
+[Produto002.vUnCom]
+valor=17.14
+
+[Produto002.vProd]
+valor=17.14
+
+[Produto002.vUnTrib]
+valor=17.14
+
 [ICMS002]
 orig=0
 CST=000
 CSOSN=
 modBC=0
 pRedBC=0
-vBC=17.14
 pICMS=18
 vICMS=3.0852
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=17.14
 pICMSST=
 vICMSST=
 UFST=
@@ -233,8 +247,14 @@ vICMSOp=
 pDif=
 vICMSDif=
 
+[ICMS002.vBC]
+valor=17.14
+
+[ICMS002.vBCST]
+valor=17.14
+
 [Produto003]
-cProd=93
+cProd=
 cEAN=
 xProd=BATENTE ADESIVO CIRC SILICONE 12MM (50 UNID P/ CARTELA)
 NCM=29291090
@@ -243,12 +263,9 @@ EXTIPI=
 CFOP=5102
 uCom=PC
 qCom=1
-vUnCom=6.54
-vProd=6.54
 cEANTrib=
 uTrib=
 qTrib=
-vUnTrib=6.54
 vFrete=
 vSeg=
 vDesc=
@@ -263,19 +280,26 @@ vIPIDevol=
 vTotTrib=
 infAdProd=
 
+[Produto003.vUnCom]
+valor=6.54
+
+[Produto003.vProd]
+valor=6.54
+
+[Produto003.vUnTrib]
+valor=6.54
+
 [ICMS003]
 orig=0
 CST=000
 CSOSN=
 modBC=0
 pRedBC=0
-vBC=6.54
 pICMS=18
 vICMS=1.1772
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=6.54
 pICMSST=
 vICMSST=
 UFST=
@@ -292,8 +316,14 @@ vICMSOp=
 pDif=
 vICMSDif=
 
+[ICMS003.vBC]
+valor=6.54
+
+[ICMS003.vBCST]
+valor=6.54
+
 [Produto004]
-cProd=17988
+cProd=
 cEAN=
 xProd=PORTA OLEO LATERAL CROMADO 115MM PREMIUM JR8665
 NCM=94039090
@@ -302,12 +332,9 @@ EXTIPI=
 CFOP=5102
 uCom=PC
 qCom=1
-vUnCom=157.94
-vProd=157.94
 cEANTrib=
 uTrib=
 qTrib=
-vUnTrib=157.94
 vFrete=
 vSeg=
 vDesc=
@@ -322,19 +349,26 @@ vIPIDevol=
 vTotTrib=
 infAdProd=
 
+[Produto004.vUnCom]
+valor=157.94
+
+[Produto004.vProd]
+valor=157.94
+
+[Produto004.vUnTrib]
+valor=157.94
+
 [ICMS004]
 orig=0
 CST=000
 CSOSN=
 modBC=0
 pRedBC=0
-vBC=157.94
 pICMS=18
 vICMS=28.4292
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=157.94
 pICMSST=
 vICMSST=
 UFST=
@@ -351,8 +385,14 @@ vICMSOp=
 pDif=
 vICMSDif=
 
+[ICMS004.vBC]
+valor=157.94
+
+[ICMS004.vBCST]
+valor=157.94
+
 [Produto005]
-cProd=18039
+cProd=
 cEAN=
 xProd=DOB RENNA CLICK SLOW 110° RETA
 NCM=83021000
@@ -361,12 +401,9 @@ EXTIPI=
 CFOP=5102
 uCom=PC
 qCom=50
-vUnCom=4.42
-vProd=4.42
 cEANTrib=
 uTrib=
 qTrib=
-vUnTrib=4.42
 vFrete=
 vSeg=
 vDesc=
@@ -381,19 +418,26 @@ vIPIDevol=
 vTotTrib=
 infAdProd=
 
+[Produto005.vUnCom]
+valor=4.42
+
+[Produto005.vProd]
+valor=4.42
+
+[Produto005.vUnTrib]
+valor=4.42
+
 [ICMS005]
 orig=2
 CST=200
 CSOSN=
 modBC=0
 pRedBC=0
-vBC=221
 pICMS=18
-vICMS=39.78
+vICMS=0.7956
 modBCST=
 pMVAST=
 pRedBCST=
-vBCST=221
 pICMSST=
 vICMSST=
 UFST=
@@ -409,5 +453,11 @@ vICMSDeson=
 vICMSOp=
 pDif=
 vICMSDif=
+
+[ICMS005.vBC]
+valor=4.42
+
+[ICMS005.vBCST]
+valor=4.42
 
 ",1)

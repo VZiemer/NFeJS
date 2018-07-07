@@ -15,5 +15,6 @@ module.exports = {
     FormularioDeSeguranca: require('./lib/formularioDeSeguranca'),
     Fatura: require('./lib/fatura'),
     Duplicata: require('./lib/duplicata'),
-    GravaBanco: require('./lib/gravabanco')
+    GravaBanco: require('./lib/gravabanco'),
+    Pagamento: require('./lib/pagamento')
 };
