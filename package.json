@@ -1,16 +1,29 @@
 {
   "name": "node-nfe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Emissor da NF-e 4.0 em NodeJS",
-  "main": "nfe.js",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vziemet/nfejs.git"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt test --verbose"
   },
   "keywords": [
-    "nfe"
+    ""
   ],
-  "author": "VZiemer",
+  "author": {
+    "name": "VZiemer",
+    "email": "vextorz@gmail.com"
+  },
   "license": "MIT",
+  "devDependencies": {
+    "alltested": "0.0.3",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1"
+  },
   "dependencies": {
     "brasil": "0.0.50",
     "busca-cep": "^0.3.6",
