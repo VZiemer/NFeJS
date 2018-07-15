@@ -1,6 +1,7 @@
 
 
 // TODO: buscar numero da próxima nota
+// trazer junto os dados do emitente da nota
 // TODO: enviar e trazer retorno de chave e protocolo, após gravar a nota no sistema
 // TODO: integração ao caixa e impressão
 
@@ -14,13 +15,11 @@
 //testes
 
 var ini = require('ini');
-
 var fs = require('fs'),
     path = require('path'),
     Venda = require('./lib/venda'),
     Dinheiro = require('./lib/dinheiro'),
     firebird = require('node-firebird'),
-    buscaCep = require('busca-cep'),
     conexao = require('./db'),
     nfe = require('./app'),
     NFe = nfe.NFe,
@@ -50,9 +49,6 @@ function zeroEsq(valor, comprimento, digito) {
     var length = comprimento - valor.toString().length + 1;
     return Array(length).join(digito || '0') + valor;
 };
-
-
-
 
 // abre a venda (do caixa já virá aberto)
 
@@ -160,42 +156,6 @@ function dadosNota(venda) {
         console.log(destinatario);
         resolve(venda);
 
-
-        // firebird.attach(conexao, function (err, db) {
-        //     if (err) throw err;
-        //     db.query('select v.lcto,v.codcli,v.total,tr.peso,tr.volumes,tr.frete,tr.outra_desp,tr.desconto,tr.total_nota,tr.tipofrete,c.cgc,c.razao,c.insc,c.endereco,c.numero,c.bairro,c.complemento,c.cidade,c.cep,c.fone,c.email,ci.codibge,c.codcidade,ci.estado,ci.cod_estado,transp.codigo as codtransp, transp.transportador from venda v join transito tr on v.lcto = tr.documento join cliente c on c.codigo=v.codcli join cidade ci on c.codcidade = ci.cod_cidade left join transp on tr.codtransp = transp.codigo where lcto = ?', venda, function (err, result) {
-        //         if (err) throw err;
-        //         db.detach(function () {
-        //             endDest = result[0].ESTADO;
-        //             destinatario.comNome(result[0].RAZAO)
-        //                 .comCodigo(result[0].CODCLI)
-        //                 .comRegistroNacional(result[0].CGC)
-        //                 .comInscricaoEstadual(result[0].INSC)
-        //                 .comTelefone(result[0].FONE)
-        //                 .comEmail(result[0].EMAIL)
-        //                 .comEndereco(new Endereco()
-        //                     .comLogradouro(result[0].ENDERECO)
-        //                     .comNumero(result[0].NUMERO)
-        //                     .comComplemento(result[0].COMPLEMENTO)
-        //                     .comCep(result[0].CEP)
-        //                     .comBairro(result[0].BAIRRO)
-        //                     .comMunicipio(result[0].CIDADE)
-        //                     .comCidade(result[0].CIDADE)
-        //                     .comUf(result[0].ESTADO)
-        //                     .comCodMunicipio(result[0].CODIBGE));
-        //             transportador.comNome(result[0].TRANSPORTADOR)
-        //                 .comCodigo(result[0].CODTRANSP)
-        //                 .comEndereco(new Endereco());
-        //             volumes.comQuantidade(result[0].VOLUMES);
-        //             volumes.comEspecie('CX');
-        //             volumes.comMarca('');
-        //             volumes.comNumeracao('');
-        //             volumes.comPesoBruto(result[0].PESO);
-        //             console.log(destinatario);
-        //             resolve(venda);
-        //         })
-        //     })
-        // })
     })
 }
 
@@ -319,43 +279,9 @@ function itensNota(venda) {
                 .comValorTotal(item.VALOR * item.QTD));
         }
         resolve(venda);
-        // firebird.attach(conexao, function (err, db) {
-        //     if (err) throw err;
-        //     db.query('select * from listaprodvendas(?)', venda, function (err, result) {
-        //         if (err) throw err;
-        //         db.detach(function () {
-        //             for (let item of result) {
-        //                 var prodst = (item.SITTRIB === "060") ? true : false;
-        //                 var icms = new Icms().CalculaIcms(
-        //                     prodst,
-        //                     danfe.getEmitente().getCrt(),
-        //                     danfe.getEmitente().getEndereco().getUf(),
-        //                     danfe.getDestinatario().getEndereco().getUf(),
-        //                     1,
-        //                     1,
-        //                     item.BASECALC,
-        //                     item.ALIQ,
-        //                     item.ORIG
-        //                 )
-        //                 danfe.adicionarItem(new Item()
-        //                     .comCodigo(item.CODIGO)
-        //                     .comDescricao(item.DESCRICAO)
-        //                     .comNcmSh(item.NCM)
-        //                     .comIcms(icms)
-        //                     // .comOCst('020')
-        //                     // .comCfop('6101')
-        //                     .comUnidade(item.UNIDADE)
-        //                     .comQuantidade(item.QTDPEDIDO)
-        //                     .comValorUnitario(item.VALOR)
-        //                     .comValorTotal(item.VALOR * item.QTDPEDIDO));
-        //             }
-        //             resolve(danfe);
-        //         })
-        //     })
-        // })
+  
     })
 }
-
 function totalizadorNfe() {
     console.log('totalizador')
     return new Promise((resolve, reject) => {
