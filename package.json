@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/vziemet/nfejs.git"
   },
+  "bin": {
+    "node-nfe": "bin/nodenfe.js"
+  },
   "scripts": {
     "test": "grunt test --verbose"
   },
