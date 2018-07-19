@@ -148,6 +148,12 @@ var Danfe = (function () {
         return this;
     };
 
+
+    Danfe.prototype.getPagamento = function () {
+        return this._pagamentos || [];
+    };
+
+
     Danfe.prototype.getItens = function () {
         return this._itens;
     };
