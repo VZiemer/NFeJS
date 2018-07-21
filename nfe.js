@@ -13,7 +13,7 @@ var gammautils = require('gammautils'),
     formatarNumero = brasil.nfe.formatarNumero,
     formatarChaveDeAcesso = brasil.nfe.formatarChaveDeAcesso,
     eChaveDeAcesso = brasil.nfe.validarChaveDeAcesso,
-
+    Dinheiro = require('./lib/dinheiro'),
     Impostos = require('./lib/impostos'),
     Emitente = require('./lib/emitente'),
     Destinatario = require('./lib/destinatario'),
@@ -177,32 +177,28 @@ var Danfe = (function () {
     };
 
     Danfe.prototype.getValorTotalDaNota = function () {
-        return this._valorTotalDaNota || 0;
+        return this._valorTotalDaNota.valor || 0;
     };
 
     Danfe.prototype.getValorTotalDaNotaFormatado = function (simbolo) {
-        return formatarDinheiro(this.getValorTotalDaNota(), {
-            simbolo: (simbolo === false ? '' : 'R$ ')
-        });
+        return this._valorTotalDaNota.toString();
     };
 
     Danfe.prototype.comValorTotalDaNota = function (_valorTotalDaNota) {
-        this._valorTotalDaNota = parseFloat(_valorTotalDaNota);
+        this._valorTotalDaNota = new Dinheiro(_valorTotalDaNota);
         return this;
     };
 
     Danfe.prototype.getValorTotalDosProdutos = function () {
-        return this._valorTotalDosProdutos || 0;
+        return this._valorTotalDosProdutos.valor || 0;
     };
 
     Danfe.prototype.getValorTotalDosProdutosFormatado = function () {
-        return formatarDinheiro(this.getValorTotalDosProdutos(), {
-            simbolo: ''
-        });
+        return this._valorTotalDosProdutos.toString();
     };
 
     Danfe.prototype.comValorTotalDosProdutos = function (_valorTotalDosProdutos) {
-        this._valorTotalDosProdutos = parseFloat(_valorTotalDosProdutos);
+        this._valorTotalDosProdutos = _valorTotalDosProdutos;
         return this;
     };
 
@@ -249,7 +245,7 @@ var Danfe = (function () {
     };
 
     Danfe.prototype.getValorDoFrete = function () {
-        return this._valorDoFrete || 0;
+        return this._valorDoFrete.valor || 0;
     };
 
     Danfe.prototype.getValorDoFreteFormatado = function () {
