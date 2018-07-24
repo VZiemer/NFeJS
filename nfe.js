@@ -46,9 +46,9 @@ var Danfe = (function () {
     };
     Danfe.prototype.comFinalidade = function (_finalidade) {
         let finalidades = ["normal", "complementar", "ajuste"];
-        if(finalidades.indexOf(_finalidade) === -1) {
+        if (finalidades.indexOf(_finalidade) === -1) {
             throw new Error('Finalidade não existe');
-        }        
+        }
         this._finalidade = _finalidade;
         return this;
     }
@@ -57,12 +57,12 @@ var Danfe = (function () {
     }
     Danfe.prototype.getCodigoFinalidade = function () {
         let codigosFinalidade = {
-            "normal" : "1",
-            "complementar" : "2", 
-            "ajuste" : "3"
+            "normal": "1",
+            "complementar": "2",
+            "ajuste": "3"
         }
         return codigosFinalidade[this._finalidade];
-    }    
+    }
     Danfe.prototype.getFormularioDeSeguranca = function () {
         return this._formularioDeSeguranca;
     };
@@ -491,13 +491,13 @@ var Danfe = (function () {
 
     Danfe.prototype.comModalidadeDoFrete = function (_modalidadeDoFrete) {
         if ([
-            'semFrete',
-            'porContaDoEmitente',
-            'porContaDoDestinatarioRemetente',
-            'porContaDeTerceiros',
-            'porContaProprioRemetente',
-            'porContaProprioDestinatario'
-        ].indexOf(_modalidadeDoFrete) === -1) {
+                'semFrete',
+                'porContaDoEmitente',
+                'porContaDoDestinatarioRemetente',
+                'porContaDeTerceiros',
+                'porContaProprioRemetente',
+                'porContaProprioDestinatario'
+            ].indexOf(_modalidadeDoFrete) === -1) {
             throw new Error([
                 'Os valores permitidos são as strings',
                 '"semFrete",',
@@ -511,6 +511,10 @@ var Danfe = (function () {
 
         return this;
     };
+    
+    Danfe.prototype.getModalidadeDoFrete = function () {
+        return this._modalidadeDoFrete;
+    }
 
     Danfe.prototype.getModalidadeDoFreteFormatada = function () {
         return {
