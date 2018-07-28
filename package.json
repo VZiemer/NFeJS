@@ -1,7 +1,7 @@
 {
   "name": "node-nfe",
-  "version": "1.0.1",
-  "description": "Emissor da NF-e 4.0 em NodeJS",
+  "version": "1.0.2",
+  "description": "Emissor da NF-e 4.0",
   "main": "app.js",
   "repository": {
     "type": "git",
