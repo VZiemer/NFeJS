@@ -33,6 +33,7 @@ var Danfe = (function () {
         this._pagamentos = [];
         this._duplicatas = [];
         this._itens = [];
+        this._nfRef= [];
 
     }
 
@@ -45,7 +46,7 @@ var Danfe = (function () {
         return this;
     };
     Danfe.prototype.comFinalidade = function (_finalidade) {
-        let finalidades = ["normal", "complementar", "ajuste"];
+        let finalidades = ["normal", "complementar", "ajuste", "devolução"];
         if (finalidades.indexOf(_finalidade) === -1) {
             throw new Error('Finalidade não existe');
         }
@@ -59,7 +60,8 @@ var Danfe = (function () {
         let codigosFinalidade = {
             "normal": "1",
             "complementar": "2",
-            "ajuste": "3"
+            "ajuste": "3",
+            "devolução": "4"
         }
         return codigosFinalidade[this._finalidade];
     }
@@ -79,6 +81,26 @@ var Danfe = (function () {
 
         return this;
     };
+
+
+    Danfe.prototype.comNfRef = function (_refNF) {
+        this._nfRef.push(
+            {
+                "nNF": _refNF.numNota,
+                "refNFe": _refNF.chNota
+            }
+        );
+        return this;
+    };
+    Danfe.prototype.getNfRef = function () {
+        return this._nfRef;
+    }
+
+
+
+
+
+
 
     Danfe.prototype.getEmitente = function () {
         return this._emitente;
@@ -245,6 +267,9 @@ var Danfe = (function () {
     };
 
     Danfe.prototype.getValorDoFrete = function () {
+        if (!this._valorDoFrete) {
+            return 0;
+        }
         return this._valorDoFrete.valor || 0;
     };
 
@@ -262,6 +287,9 @@ var Danfe = (function () {
     };
 
     Danfe.prototype.getValorDoSeguro = function () {
+        if (!this._valorDoSeguro) {
+            return 0;
+        }
         return this._valorDoSeguro || 0;
     };
 
@@ -491,13 +519,13 @@ var Danfe = (function () {
 
     Danfe.prototype.comModalidadeDoFrete = function (_modalidadeDoFrete) {
         if ([
-                'semFrete',
-                'porContaDoEmitente',
-                'porContaDoDestinatarioRemetente',
-                'porContaDeTerceiros',
-                'porContaProprioRemetente',
-                'porContaProprioDestinatario'
-            ].indexOf(_modalidadeDoFrete) === -1) {
+            'semFrete',
+            'porContaDoEmitente',
+            'porContaDoDestinatarioRemetente',
+            'porContaDeTerceiros',
+            'porContaProprioRemetente',
+            'porContaProprioDestinatario'
+        ].indexOf(_modalidadeDoFrete) === -1) {
             throw new Error([
                 'Os valores permitidos são as strings',
                 '"semFrete",',
@@ -511,7 +539,7 @@ var Danfe = (function () {
 
         return this;
     };
-    
+
     Danfe.prototype.getModalidadeDoFrete = function () {
         return this._modalidadeDoFrete;
     }
@@ -521,7 +549,8 @@ var Danfe = (function () {
             semFrete: '(9) Sem Frete',
             porContaDoEmitente: '(0) Emitente',
             porContaDoDestinatarioRemetente: '(1) Dest/Rem',
-            porContaDeTerceiros: '(2) Terceiros'
+            porContaDeTerceiros: '(2) Terceiros',
+            porContaProprioRemetente: '(3) Próprio Emit'
         }[this.getModalidadeDoFrete()] || '';
     };
 
