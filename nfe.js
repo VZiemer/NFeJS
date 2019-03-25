@@ -4,7 +4,7 @@ var gammautils = require('gammautils'),
     eDataValida = gammautils.date.isValidDate,
 
     ie = require('inscricaoestadual'),
-    brasil = require('brasil'),
+    brasil = require('./lib/brasil/brasil'),
     formatarDinheiro = brasil.formatacoes.dinheiro,
     formatarData = brasil.formatacoes.data,
     formatarHora = brasil.formatacoes.hora,
