@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      "brasil@0.0.50",
+      "D:\\projetos\\electron\\nfejs"
+    ]
+  ],
+  "_from": "brasil@0.0.50",
+  "_id": "brasil@0.0.50",
+  "_inBundle": false,
+  "_integrity": "sha1-8PU9j25erR5yiZ2bcTyNv7Z51/s=",
+  "_location": "/brasil",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "brasil@0.0.50",
+    "name": "brasil",
+    "escapedName": "brasil",
+    "rawSpec": "0.0.50",
+    "saveSpec": null,
+    "fetchSpec": "0.0.50"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/brasil/-/brasil-0.0.50.tgz",
+  "_spec": "0.0.50",
+  "_where": "D:\\projetos\\electron\\nfejs",
+  "author": {
+    "name": "Gammasoft Desenvolvimento de Software Ltda",
+    "email": "contato@gammasoft.com.br"
+  },
+  "browser": "brasil.browser.js",
+  "bugs": {
+    "url": "https://github.com/gammasoft/brasil/issues"
+  },
+  "contributors": [
+    {
+      "name": "Renato Gama",
+      "email": "renatoargh@gmail.com",
+      "url": "https://github.com/renatoargh"
+    },
+    {
+      "name": "Danilo Sampaio",
+      "url": "https://github.com/danilosampaio"
+    }
+  ],
+  "dependencies": {
+    "gammautils": "0.0.67",
+    "pdfkit": "^0.7.0"
+  },
+  "description": "Biblioteca de ferramentas utilitárias voltadas para programadores brasileiros",
+  "devDependencies": {
+    "nodeunit": "~0.8.1"
+  },
+  "homepage": "https://github.com/gammasoft/brasil#readme",
+  "keywords": [
+    "brasil",
+    "tabela",
+    "ibge",
+    "estados",
+    "ferramentas",
+    "utilitarias",
+    "validacoes",
+    "nfe",
+    "nota",
+    "fiscal",
+    "eletronica",
+    "cpf",
+    "cnpj",
+    "bancos",
+    "itau",
+    "banco do brasil",
+    "bradesco",
+    "caixa",
+    "caixa economica",
+    "boleto bancario",
+    "nota fiscal eletronica",
+    "sefaz",
+    "receita federal",
+    "pessoa juridica",
+    "pessoa fisica",
+    "cfop",
+    "ncm",
+    "DDD"
+  ],
+  "license": "MIT",
+  "main": "brasil.js",
+  "name": "brasil",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gammasoft/brasil.git"
+  },
+  "scripts": {
+    "test": "nodeunit ./tests/*Test.js && nodeunit ./tests/boleto/bancos/*Test.js && nodeunit ./tests/boleto/*Test.js"
+  },
+  "version": "0.0.50"
+}
